@@ -1,3 +1,8 @@
+# Check required utilites
+for util in innobackupex qpress aws; do
+        which $util || { echo "ERROR: $util not found"; exit 1; }
+done
+
 export AWS_ACCESS_KEY_ID="*********************"
 export AWS_SECRET_ACCESS_KEY="****************************************"
 AWS_BUCKET="org.name.backup-redmine"
