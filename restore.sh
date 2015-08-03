@@ -47,12 +47,12 @@ rm "$GPG_SECRET_KEYRING"
 
 # Restore backup
 stop redmine
-tar xzf "$DIR"/"$files_nogpg" -C /
+tar xzf "$DIR"/"$files_nogpg" --same-owner -C /
 chown -R "$REDMINE_SYS_USER": "$REDMINE_FILES"
 
 service mysql stop
 innobackupex --decompress "$DIR"/"$mysql"
-innobackupex --apply-log --use-memory=512M "$DIR"/"$mysql"
+innobackupex --apply-log --use-memory=256M "$DIR"/"$mysql"
 rm "$MYSQL_DATA_DIR"/* -r
 cp -ar "$DIR"/"$mysql"/* "$MYSQL_DATA_DIR"
 chown -R "$MYSQL_SYS_USER": "$MYSQL_DATA_DIR"
