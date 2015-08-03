@@ -48,7 +48,6 @@ rm "$GPG_SECRET_KEYRING"
 # Restore backup
 stop redmine
 tar xzf "$DIR"/"$files_nogpg" --same-owner -C /
-chown -R "$REDMINE_SYS_USER": "$REDMINE_FILES"
 
 service mysql stop
 innobackupex --decompress "$DIR"/"$mysql"
