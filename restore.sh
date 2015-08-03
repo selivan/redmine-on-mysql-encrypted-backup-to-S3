@@ -5,11 +5,6 @@
 config=$(dirname ${BASH_SOURCE[0]})/config.sh
 source $config || { echo "ERROR: can not load config"; exit 1; }
 
-# Check required utilites
-for util in innobackupex aws; do
-        which $util || { echo "ERROR: $util not found"; exit 1; }
-done
-
 #set -e
 set -x
 
