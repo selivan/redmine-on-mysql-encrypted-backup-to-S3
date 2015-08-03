@@ -41,5 +41,5 @@ old_mysql=$(ls -1dt "$DIR"/mysql* | sed "1,${ROTATE}d")
 
 # Upload backup to AWS S3
 region=$(aws s3api get-bucket-location --output text --bucket unitpay.s3.backup-redmine)
-aws s3 sync "$DIR" s3://"$AWS_BUCKET"/ --region "$region"
+aws s3 sync --delete "$DIR" s3://"$AWS_BUCKET"/ --region "$region"
 
