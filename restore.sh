@@ -11,7 +11,7 @@ set -x
 region=$(aws s3api get-bucket-location --output text --bucket unitpay.s3.backup-redmine)
 
 files=$1
-mysql=$0
+mysql=$2
 
 set +x
 # If no backup specified - list all possible
