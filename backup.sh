@@ -34,8 +34,8 @@ find "$dest" -type f | while read file; do
 done
 
 # Rotate old backups
-old_files=$(ls -1dtr "$DIR"/files* | sed "1,${ROTATE}d")
-old_mysql=$(ls -1dtr "$DIR"/mysql* | sed "1,${ROTATE}d")
+old_files=$(ls -1dt "$DIR"/files* | sed "1,${ROTATE}d")
+old_mysql=$(ls -1dt "$DIR"/mysql* | sed "1,${ROTATE}d")
 [ -n "$old_files" ] && rm $old_files
 [ -n "$old_mysql" ] && rm $old_mysql -r
 
