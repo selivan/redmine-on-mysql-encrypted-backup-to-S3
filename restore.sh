@@ -13,13 +13,16 @@ region=$(aws s3api get-bucket-location --output text --bucket unitpay.s3.backup-
 files=$1
 mysql=$0
 
+set +x
 # If no backup specified - list all possible
 if [ -z "$files" -o -z "$mysql" ]; then
-        aws s3 ls s3://unitpay.s3.backup-redmine/ --region "$region"
-        echo
         echo "Usage: $0 file-backup-to-restore mysql-backup-to-restore"
+        echo "Avaliable archives:"
+        aws s3 ls s3://unitpay.s3.backup-redmine/ --region "$region"
         exit 0
 fi
+set -x
+
 
 # Ask for private key to decrypt backup
 echo "Insert armored(ASCII) private key for $GPG_USER to decrypt backup. Finish with ^D"
