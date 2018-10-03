@@ -8,7 +8,7 @@ source $config || { echo "ERROR: can not load config"; exit 1; }
 #set -e
 set -x
 
-region=$(aws s3api get-bucket-location --output text --bucket unitpay.s3.backup-redmine)
+region=$(aws s3api get-bucket-location --output text --bucket "$AWS_BUCKET")
 
 files=$1
 mysql=$2
@@ -18,7 +18,7 @@ set +x
 if [ -z "$files" -o -z "$mysql" ]; then
         echo "Usage: $0 file-backup-to-restore mysql-backup-to-restore"
         echo "Avaliable archives:"
-        aws s3 ls s3://unitpay.s3.backup-redmine/ --region "$region"
+        aws s3 ls s3://"$AWS_BUCKET"/ --region "$region"
         exit 0
 fi
 set -x
